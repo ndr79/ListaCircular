@@ -78,3 +78,52 @@ void imprimir(Lista* l) {
         printf("]\n");
     }
 }
+
+// Remove um item da lista
+// Entrada: lista e o elemento a ser retirado
+// Retorno: lista atualizada
+// Pré-condição: nenhuma
+// Pós-condição: o elemento é retirado da lista
+Lista* retirar(Lista* l, TipoItem x) {
+    if(vazia(l)) {
+        printf("Lista vazia.\n");
+        return l;
+    }
+
+    Lista* ant = NULL;
+    Lista* p = l;
+
+    do {
+        if(p->info == x)
+            break;
+        ant = p;
+        p = p->prox;
+    } while(p != l);
+
+    if(p->info != x) {
+        printf("Elemento não encontrado.\n");
+        return l;
+    }
+
+    if(p == l && p->prox == l) {    // lista com um único elemento
+        free(p);
+        return NULL;
+    }
+
+    if(p == l) {    // Remoção na cabeça
+        Lista* ultimo = l;
+
+        while(ultimo->prox != l)
+            ultimo = ultimo->prox;
+
+        l = l->prox;
+        ultimo->prox = l;
+        free(p);
+        return l;
+    }
+
+    // remoção do meio ou cauda
+    ant->prox = p->prox;
+    free(p);
+    return l;
+}
