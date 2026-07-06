@@ -32,5 +32,11 @@ Lista* inserir(Lista* l, TipoItem info);
 // Pós-condição: toda a memória alocada para a lista é liberada
 void liberar(Lista* l);
 
+// Imprime os elementos da lista
+// Entrada: lista
+// Retorno: nenhum
+// Pré-condição: nenhuma
+// Pós-condição: os elementos da lista são exibidos na tela
+void imprimir(Lista* l);
 
 #endif /* listaCircular_h */
